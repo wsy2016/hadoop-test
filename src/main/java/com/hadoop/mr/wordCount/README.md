@@ -1,0 +1,1 @@
+hadoop jar /usr/local/src/data/jar/hadoop-test.jar com.hadoop.mr.MyDriver /input/The_man_of_property.txt
