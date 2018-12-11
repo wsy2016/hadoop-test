@@ -33,10 +33,12 @@ public class MyReduce extends Reducer<Text, LongWritable, Text, LongWritable> {
      */
     @Override
     protected void reduce(Text key, Iterable<LongWritable> values, Context context) throws IOException, InterruptedException {
+        //reduce方法会被reducrTask反复调用
         Long count = 0L;
         for(LongWritable value : values){
             count++;
         }
+        System.out.println("  key:{} "+key);
         context.write(key,new LongWritable(count));
 
 

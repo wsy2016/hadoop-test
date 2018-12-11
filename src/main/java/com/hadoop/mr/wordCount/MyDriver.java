@@ -27,7 +27,7 @@ public class MyDriver {
      * 那个是map,那个是reduce
      * 封装成一个job
      */
-    public static void main(String[] args) throws Exception {
+    public static void driver(String[] args) throws Exception {
         if (args == null || args.length != 2) {
             System.err.println("Usage: 参数不全");
             System.exit(2);
@@ -43,18 +43,17 @@ public class MyDriver {
 
         //设置map
         job.setMapperClass(MyMapper.class);
-        job.setReducerClass(MyReduce.class);
-
-        job.setOutputKeyClass(TextInputFormat.class);
-        job.setInputFormatClass(TextInputFormat.class);
-
-
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(LongWritable.class);
+        job.setInputFormatClass(TextInputFormat.class);
 
         //设置reduce
+        job.setReducerClass(MyReduce.class);
         job.setOutputKeyClass(Text.class);
         job.setMapOutputValueClass(LongWritable.class);
+        job.setOutputKeyClass(TextInputFormat.class);
+        job.setNumReduceTasks(2);
+
 
         //指定要处理的数据的位置
         FileInputFormat.setInputPaths(job, args[0]);
@@ -67,8 +66,25 @@ public class MyDriver {
         // 告诉文件输出组件，输出结果放在哪里
         FileOutputFormat.setOutputPath(job, output);
 
+        //参数verbose : 是否要在客户端显示进度
         boolean res = job.waitForCompletion(true);
         // 如果job在hadoop集群中执行成功，则我这个客户端程序正常退出，否则异常退出
         System.exit(res ? 0 : 1);
+        //job.submit();
+    }
+
+    public static void main(String[] args) {
+
+        // "/input/The_man_of_property.txt
+        // "/Users/wensiyang/Downloads/The_man_of_property.txt"
+        // "/output";
+        // "/Users/wensiyang/Downloads/hh.txt.txt"
+        String[] argss = {"/Users/wensiyang/Downloads/hh.txt", "/Users/wensiyang/Downloads/hh.txt.txt"};
+        try {
+            driver(argss);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
