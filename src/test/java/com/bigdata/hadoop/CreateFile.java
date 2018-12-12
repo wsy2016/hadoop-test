@@ -1,6 +1,5 @@
 package com.bigdata.hadoop;
 
-import org.junit.Test;
 
 import java.io.*;
 
@@ -15,7 +14,7 @@ public class CreateFile {
     public static final String The_man_of_property = "/Users/wensiyang/Downloads/The_man_of_property.txt";
 
 
-    @Test
+
     public void test() {
 
         method1(The_man_of_property,"aa aa aa aa aa aa");

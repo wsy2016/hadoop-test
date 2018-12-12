@@ -75,11 +75,13 @@ public class MyDriver {
 
     public static void main(String[] args) {
 
-        // "/input/The_man_of_property.txt
-        // "/Users/wensiyang/Downloads/The_man_of_property.txt"
-        // "/output";
-        // "/Users/wensiyang/Downloads/hh.txt.txt"
-        String[] argss = {"/Users/wensiyang/Downloads/hh.txt", "/Users/wensiyang/Downloads/hh.txt.txt"};
+
+        //    String path1 = "/Users/wensiyang/Downloads/hh.txt";
+        //    String path1 = "/Users/wensiyang/Downloads/The_man_of_property.txt";
+        //    String path2 = "/Users/wensiyang/Downloads/result.txt";
+        //    String path1 = "/input/The_man_of_property.txt";
+        //    String path2 = "/output";
+        String[] argss = {args[0], args[1]};
         try {
             driver(argss);
         } catch (Exception e) {
