@@ -1,0 +1,1 @@
+hadoop jar /usr/local/src/data/jar/hadoop-test.jar com.hadoop.mr.wordCount.MyDriver /input/soBigFile.txt /output

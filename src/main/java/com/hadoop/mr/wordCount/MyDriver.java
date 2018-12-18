@@ -8,7 +8,6 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.InvalidInputException;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
@@ -52,7 +51,7 @@ public class MyDriver {
         job.setOutputKeyClass(Text.class);
         job.setMapOutputValueClass(LongWritable.class);
         job.setOutputKeyClass(TextInputFormat.class);
-        job.setNumReduceTasks(2);
+        job.setNumReduceTasks(1);
 
 
         //指定要处理的数据的位置
