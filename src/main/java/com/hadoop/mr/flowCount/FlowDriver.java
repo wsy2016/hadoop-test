@@ -9,6 +9,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 /**
  * Description:
@@ -29,25 +30,30 @@ public class FlowDriver {
         job.setJarByClass(FlowDriver.class);
         job.setJobName("FlowCount");
 
-        //
+        //设置mapper
         job.setInputFormatClass(TextInputFormat.class);
-        FileInputFormat.setInputPaths(job,args[0]);
         job.setMapperClass(FlowMapper.class);
-        job.setMapOutputValueClass(Text.class);
-        job.setMapOutputKeyClass(FlowBean.class);
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(FlowBean.class);
 
+
+
+
+        // 设置reduce
+        job.setOutputFormatClass(TextOutputFormat.class);
+        job.setReducerClass(FlowReduce.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(FlowBean.class);
+
+        //设置输入输出文件路径
+        FileInputFormat.setInputPaths(job,args[0]);
         Path output = new Path(args[1]);
         FileSystem fs = FileSystem.get(conf);
         if (fs.exists(output)) {
             fs.delete(output, true);
         }
-
-        // 告诉文件输出组件，输出结果放在哪里
         FileOutputFormat.setOutputPath(job, output);
-        job.setOutputKeyClass(TextInputFormat.class);
-        job.setReducerClass(FlowReduce.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputKeyClass(FlowBean.class);
+
 
         //参数verbose : 是否要在客户端显示进度
         boolean res = job.waitForCompletion(true);

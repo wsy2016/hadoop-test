@@ -16,8 +16,19 @@ import java.util.Map;
  * Date: 2018/12/18 21:39
  */
 public class MyBolt extends BaseRichBolt {
+
+
+    /**
+     *
+     * Description:初始化代码
+     * Author: wsy
+     * Date: 2018/12/20 21:41
+     * Param: [map, topologyContext, outputCollector]
+     * Return: void
+     */
     @Override
     public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
+
 
     }
 
