@@ -9,6 +9,12 @@ import java.io.IOException;
 
 /**
  * Description: 用于保存上下流量,下行流量,总流量
+ *
+ *
+ * Java的序列化是一个重量级序列化框架（Serializable），
+ * 一个对象被序列化后，会附带很多额外的信息（各种校验信息，header，继承体系。。。。），
+ * 所以很臃肿，不便于在网络中高效传输；
+   因此，hadoop自己开发了一套序列化机制（Writable），精简，高效
  * <p>
  * Author: wsy
  * <p>

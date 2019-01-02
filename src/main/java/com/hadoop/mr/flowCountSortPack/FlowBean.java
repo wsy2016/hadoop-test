@@ -87,8 +87,17 @@ public class FlowBean implements WritableComparable<FlowBean> {
 		return  upflow + "\t" + dflow + "\t" + sumflow;
 	}
 
-	
 
+   /**
+	*
+	* MR程序在处理数据的过程中会对数据排序(map输出的kv对传输到reduce之前，会排序)，
+	* 排序的依据是map输出的key
+	* 所以，我们如果要实现自己需要的排序规则，
+	* 则可以考虑将排序因素放到key中，让key实现接口：WritableComparable
+	* 然后重写key的compareTo方法
+	*
+	* **/
+   @Override
 	public int compareTo(FlowBean o) {
 		
 		//实现按照sumflow的大小倒序排序
