@@ -30,8 +30,8 @@ public class ProvincePartitioner extends Partitioner<Text, LongWritable> {
     *
     * */
     public int matchProvince(Text text) {
-        System.out.println(text.toString().trim());
-        Long phone = Long.parseLong(text.toString().trim());
+        System.out.println(text.toString().replace("\uFEFF","").trim());
+        Long phone = Long.parseLong(text.toString().replace("\uFEFF","").trim());
         return phone % 2 == 0 ? 0 : 1;
     }
     

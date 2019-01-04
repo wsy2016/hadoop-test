@@ -13,7 +13,7 @@
        --| 启动maptask      
        --| 启动reducetask  
        
- ************************** **MapReduce的核心组件** ************************** 
+ ************************** **MapReduce的组件** ************************** 
          
 **mapreduce中的Combiner**
       --| combiner是MR程序中Mapper和Reducer之外的一种组件
