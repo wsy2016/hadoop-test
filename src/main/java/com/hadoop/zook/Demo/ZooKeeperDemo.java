@@ -73,8 +73,11 @@ public class ZooKeeperDemo {
 
         try {
            //在获取znode注册监听
-            byte[] node = zk.getData("/wsy",true,null);
+            byte[] rootNode = zk.getData("/",true,null);
 
+            byte[] node = zk.getData("/wsy",true,null);
+            System.out.println(new String(rootNode));
+            System.out.println(new String(node));
 
 
         } catch (Exception e) {
